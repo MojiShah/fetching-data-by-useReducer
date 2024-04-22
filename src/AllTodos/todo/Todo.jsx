@@ -10,6 +10,10 @@ export default function Todo(props) {
         props.checkTodo(id);
     }
 
+    
+        
+    
+
     return (
         <div className={`${props.todoIsDone ? 'todo completed' : 'todo'}`}>
             <li className='todo-item'>
@@ -23,6 +27,7 @@ export default function Todo(props) {
             </button>
             <button
                 className="trash-btn"
+                onClick={()=>props.deleteTodo(props.todoId)}
             >
                 <MdDelete className='trash-icon' />
             </button>
