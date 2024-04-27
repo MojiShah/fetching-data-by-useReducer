@@ -2,7 +2,7 @@
   "todos": [
     {
       "id": "1",
-      "isDone": false,
+      "isDone": true,
       "title": "learn react"
     },
     {
@@ -12,7 +12,7 @@
     },
     {
       "id": "72",
-      "isDone": false,
+      "isDone": true,
       "title": "learn redux"
     }
   ]

@@ -7,22 +7,27 @@ import Swal from 'sweetalert2';
 export default function AllTodos() {
     const [todoInput, setTodoInput] = useState('');
     const [todoItems, setTodoItems] = useState([]);
+    const [todoStatus, setTodoStatus] = useState('all');
 
     useEffect(() => {
         getAllTodo();
-    }, [])
+    }, []);
+
+    // useEffect(()=>{
+    //     setTodoStatus(todoStatus)
+    // },[todoStatus]);
 
     const getAllTodo = async () => {
         await fetch('http://localhost:4000/todos')
             .then(res => res.json())
             .then(data => {
-                console.log('datamoji',data);
+                console.log('datamoji', data);
                 setTodoItems(data);
             })
     }
 
 
-    const addTodo = async() => {
+    const addTodo = async () => {
         console.log('addTodo loop');
         const newTodoItem = {
             id: (Math.floor(100 * Math.random())).toString(),
@@ -47,27 +52,27 @@ export default function AllTodos() {
         await fetch(`http://localhost:4000/todos/${targetTodo.id}`,
             {
                 method: 'PUT',
-                headers:{
-                    'content-type':'application/json'
+                headers: {
+                    'content-type': 'application/json'
                 },
-                body:JSON.stringify({
+                body: JSON.stringify({
                     ...targetTodo,
-                    isDone : !targetTodo.isDone
+                    isDone: !targetTodo.isDone
                 })
             }
         ).then(res => res.json())
             .then(data => console.log('data', data))
 
-            getAllTodo();
+        getAllTodo();
     }
 
     const deleteTodoHandler = async id => {
         let targetTodo = todoItems.find(todoItem => todoItem.id == id);
-        console.log('targetTodo', { ...targetTodo, isDone : !targetTodo.isDone})
+        console.log('targetTodo', { ...targetTodo, isDone: !targetTodo.isDone })
 
-        await fetch(`http://localhost:4000/todos/${targetTodo.id}`,{
-            method:"DELETE"
-        }).then(res=>{
+        await fetch(`http://localhost:4000/todos/${targetTodo.id}`, {
+            method: "DELETE"
+        }).then(res => {
             console.log(res);
             if (res.status === 200) {
                 Swal.fire({
@@ -79,6 +84,11 @@ export default function AllTodos() {
 
 
         getAllTodo()
+    }
+
+    const changeTodoStatus = e => {
+        let currentStatus = e.target.value;
+        setTodoStatus(currentStatus);
     }
 
     return (
@@ -99,7 +109,10 @@ export default function AllTodos() {
                         <FaPlus className='add-btn__content' />
                     </button>
                     <div className='selection'>
-                        <select name='todos'>
+                        <select
+                            name='todos'
+                            onChange={e => changeTodoStatus(e)}
+                        >
                             <option value="all">All</option>
                             <option value="completed">Completed</option>
                             <option value="incompleted">Incompleted</option>
@@ -110,7 +123,8 @@ export default function AllTodos() {
 
             <div className='todos'>
                 <ul className="todo-items">
-                    {
+
+                    {todoStatus === 'all' &&
                         todoItems.map(todoItem => <Todo
                             key={todoItem.id}
                             todoContent={todoItem.title}
@@ -119,6 +133,29 @@ export default function AllTodos() {
                             checkTodo={checkTodoHandler}
                             deleteTodo={deleteTodoHandler}
                         />)
+                    }
+
+                    {todoStatus === 'completed' &&
+                        todoItems.filter(todoItem => todoItem.isDone === true)
+                            .map(todoItem => <Todo
+                                key={todoItem.id}
+                                todoContent={todoItem.title}
+                                todoId={todoItem.id}
+                                todoIsDone={todoItem.isDone}
+                                checkTodo={checkTodoHandler}
+                                deleteTodo={deleteTodoHandler}
+                            />)
+                    }
+                    {todoStatus === 'incompleted' &&
+                        todoItems.filter(todoItem => todoItem.isDone === false)
+                            .map(todoItem => <Todo
+                                key={todoItem.id}
+                                todoContent={todoItem.title}
+                                todoId={todoItem.id}
+                                todoIsDone={todoItem.isDone}
+                                checkTodo={checkTodoHandler}
+                                deleteTodo={deleteTodoHandler}
+                            />)
                     }
                 </ul>
             </div>
