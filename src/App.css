@@ -1,0 +1,160 @@
+.header-section {
+    width: 100%;
+    height: 10vh;
+    background-color: #3d5dda;
+    padding: 0 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    color: #fff;
+    text-shadow: 3px 2px #f00;
+    font-style: italic;
+}
+
+.logo h1 span {
+    font-size: 3rem;
+}
+
+.nav {
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.nav__list {
+    height: 100%;
+    list-style-type: none;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.nav__list-items {
+    height: 100%;
+}
+
+.nav__list-links {
+    width: 100%;
+    height: 100%;
+    padding: 1rem 1.2rem;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.5rem;
+    transition: all 0.5s;
+    display: flex;
+    align-items: center;
+}
+
+.nav__list-links.active {
+    background-color: #454961;
+    color: gold
+}
+
+.nav__list-items:hover .nav__list-links {
+    background-color: #454961;
+    color: gold;
+    font-size: 1.6rem;
+    font-weight: bold;
+}
+
+.nav__img{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 0 1rem;
+}
+
+.home {
+    width: 100vw;
+    height: 90vh;
+    background-color: #7e9b7c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.home__img {
+    width: 30%;
+    height: 50%;
+    margin: 2rem;
+}
+
+.home__img img {
+    width: 100%;
+    height: 100%;
+    border: 10px solid #fff;
+    border-radius: 50%;
+}
+
+.wrapper {
+    width: 100vw;
+    height: 90vh;
+    background-color: #4f83dd;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.warning {
+    background-color: yellow;
+}
+
+.danger {
+    background-color: #f00;
+}
+
+.cat_image {
+    width: 300px;
+    height: 300px;
+}
+
+.cat_image img {
+    width: 100%;
+    height: 100%;
+    border: 10px solid orangered;
+    border-radius: 50%;
+    transition: all 0.9s;
+}
+
+.cat_image img:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+.btn_fetch {
+    padding: 0.8rem 1.2rem;
+    background-color: blue;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    transition: all 0.9s;
+    cursor: pointer;
+}
+
+.btn_fetch:hover {
+    background-color: #fff;
+    color: blue;
+}
+
+.desc {
+    width: 80%;
+    height: 40%;
+    background-color: orangered;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 50px;
+}
+
+.desc p {
+    font-size: 1.5rem;
+}
