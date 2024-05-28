@@ -47,4 +47,4 @@ function FactStates() {
   )
 }
 
-export default FactStates
+export default FactStates;
